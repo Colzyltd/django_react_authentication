@@ -1,43 +1,40 @@
 import React, { useState } from 'react'
+import './navbar.css'
 
 const Navbar = () => {
     const [open, setOpen] = useState(false)
 
-    const toggleMenu = () => {
-        setOpen(!open);
-    }
-
-  return (
-    <nav>
-        {/* navbar */}
-        {/* nav brand */}
-        <a className='nav-brand' href="#">brand</a>
-        {/* nav menu */}
-        <ul className={`nav-menu ${open ? 'active' : ''}`}>
-            <li className='nav-item'>
-                <a className='nav-link' onClick={() => setOpen(false)} href="#home">home</a>
-            </li>
-            <li className='nav-item'>
-                <a className='nav-link' onClick={() => setOpen(false)} href="#about">about</a>
-            </li>
-            <li className='nav-item'>
-                <a className='nav-link' onClick={() => setOpen(false)} href="#services">services</a>
-            </li>
-            <li className='nav-item'>
-                <a className='nav-link' onClick={() => setOpen(false)} href="#consultation">consultation</a>
-            </li>
-            <li className='nav-item'>
-                <a className='nav-link' onClick={() => setOpen(false)} href="#contact">contact</a>
-            </li>
-        </ul>
-        {/* nav icons */}
-        {/* <span className="nav-icons">🛒</span> */}
-        <button className='nav-toggle' onClick={toggleMenu} aria-label='hambuger'>
-            <span className={`bar ${open ? 'open' : ''}`}></span>
-            <span className={`bar ${open ? 'open' : ''}`}></span>
-            <span className={`bar ${open ? 'open' : ''}`}></span>
-        </button>
-    </nav>
+    return (
+        <nav className="navbar">
+            {/* Nav brand */}
+            <a href="/" className="nav-brand">brand</a>
+            
+            {/* Nav menu */}
+            <ul className={`nav-links ${open ? 'open' : ''}`}>
+                <li>
+                    <a href="#home" onClick={() => setOpen(false)}>home</a>
+                </li>
+                <li>
+                    <a href="#about" onClick={() => setOpen(false)}>about</a>
+                </li>
+                <li>
+                    <a href="#contact" onClick={() => setOpen(false)}>contact</a>
+                </li>
+                <li>
+                    <a href="#services" onClick={() => setOpen(false)}>services</a>
+                </li>
+            </ul>
+            
+            {/* Hamburger Menu */}
+            <button 
+                className={`nav-toggle ${open ? 'open' : ''}`}
+                onClick={() => setOpen(!open)}
+                aria-label='Toggle navigation menu'>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+            </button>
+        </nav>
   )
 }
 

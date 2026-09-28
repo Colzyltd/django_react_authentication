@@ -7,5 +7,6 @@ app_name = 'server'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
-    path('dashboard/', include('myapp.urls'))
+    path('dashboard/', include('myapp.urls')),
+    path('api/', include('account.urls')),    
 ]
