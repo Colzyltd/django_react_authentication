@@ -17,21 +17,21 @@ class UserRegistrationSerialzer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email', 'password', 'confirm_password')
         extra_kwargs = {'password': {'write_only': True}}
 
-        def validate(self, attrs):
-            if attrs['password'] != attrs['confirm_password']:
-                raise serializers.ValidationError('Passwords do not match')
+    def validate(self, attrs):
+        if attrs['password'] != attrs['confirm_password']:
+            raise serializers.ValidationError('Passwords do not match')
 
-            password = attrs.get('password', '')
-            if len(password) < 8:
-                raise serializers.ValidationError('Password must be atleast 8 characters!')
-            
-            return attrs
+        password = attrs.get('password', '')
+        if len(password) < 8:
+            raise serializers.ValidationError('Password must be atleast 8 characters!')
+        
+        return attrs
 
-        def create(self, validated_data):
-            password = validated_data.pop('password')
-            validated_data.pop('confirm_password')
+    def create(self, validated_data):
+        password = validated_data.pop('password')
+        validated_data.pop('confirm_password')
 
-            return CustomUser.objects.create_user(password=password, **validated_data)
+        return CustomUser.objects.create_user(password=password, **validated_data)
 
 # create login serializer
 class UserLoginSerializer(serializers.Serializer):
